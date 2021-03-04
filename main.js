@@ -29,7 +29,8 @@ app.use('/', router);
 // db setup
 var mongoose = require('mongoose');
 var dbURL = 'mongodb+srv://baatarso:123456Aa@cluster0.bhyzi.mongodb.net/form-db?retryWrites=true&w=majority';
-mongoose.connect(dbURL, { useNewUrlParser: true, useUnifiedTopology: true });
+var mongoDB = process.env.MONGODB_URI || dbURL;
+mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 var db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'db connection error'));  // what is this?
